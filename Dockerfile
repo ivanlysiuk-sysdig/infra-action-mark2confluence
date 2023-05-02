@@ -15,7 +15,7 @@ RUN curl -LO https://github.com/kovetskiy/mark/releases/download/${MARK}/mark_${
   sudo mv mark /usr/local/bin/mark
 
 ENV DEBIAN_FRONTEND="noninteractive"
-RUN apt-get install -y wget
+RUN apt-get update && apt-get install -y wget
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \ 
     && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 RUN apt-get update && apt-get -y install google-chrome-stable
