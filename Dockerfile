@@ -13,7 +13,7 @@ RUN curl -LO https://github.com/kovetskiy/mark/releases/download/${MARK}/mark_${
   tar -xvzf mark_${MARK}_Linux_x86_64.tar.gz && \
   chmod +x mark && \
   sudo mv mark /usr/local/bin/mark
-RUN apt-get install chromium-browser --no-install-recommends -y
+RUN apt-get update && apt-get install chromium-browser -y
 
 COPY --from=builder /app /app
 WORKDIR /app
