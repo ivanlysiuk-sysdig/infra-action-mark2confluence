@@ -6,13 +6,14 @@ WORKDIR /app
 RUN pip install --target=/app -r requirements.txt
 
 FROM python:3-slim
-ENV MARK="9.2.0"
+ENV MARK="9.2.1"
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y tar curl sudo && \
   rm -rf /var/lib/apt/lists/*
 RUN curl -LO https://github.com/kovetskiy/mark/releases/download/${MARK}/mark_${MARK}_Linux_x86_64.tar.gz && \
   tar -xvzf mark_${MARK}_Linux_x86_64.tar.gz && \
   chmod +x mark && \
   sudo mv mark /usr/local/bin/mark
+RUN apt-get install chromium-browser --no-install-recommends -y
 
 COPY --from=builder /app /app
 WORKDIR /app
